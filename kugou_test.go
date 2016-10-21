@@ -18,5 +18,11 @@ func TestSearchMusic(t *testing.T) {
 	}
 	for k, v := range songs {
 		t.Logf("songs%d: %s - %s\n", k, v.Songname, v.Singername)
+		d, err := sdk.Detail(v.Hash)
+		if err != nil {
+			t.Errorf("Get detail for %s error: %s\n", v.Hash, err.Error())
+		} else {
+			t.Logf("filesize: %d, url: %s\n", d.FileSize, d.URL)
+		}
 	}
 }

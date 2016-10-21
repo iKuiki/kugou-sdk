@@ -39,3 +39,22 @@ func (this *KugouSdk) Search(keyword string, page, size uint64) ([]SearchSongIte
 	}
 	return searchResult.Data.Info, nil
 }
+
+func (this *KugouSdk) Detail(hash string) (DetailResult, error) {
+	req := httplib.Get(KG_PATH_DETAIL)
+	req.Param("cmd", "playInfo")
+	req.Param("hash", hash)
+	byteData, err := req.Bytes()
+	if err != nil {
+		return DetailResult{}, errors.New("request to kugou server error: " + err.Error())
+	}
+	var detail DetailResult
+	err = json.Unmarshal(byteData, &detail)
+	if err != nil {
+		return DetailResult{}, errors.New("respond parse as json error: " + err.Error())
+	}
+	if detail.Errcode != 0 {
+		return DetailResult{}, errors.New("kugou server errorCode " + strconv.Itoa(detail.Errcode) + ": " + detail.Error)
+	}
+	return detail, nil
+}

@@ -78,3 +78,32 @@ type SearchSongGroupItem struct {
 	Srctype          int    `json:"srctype"`
 	Topic            string `json:"topic"`
 }
+type DetailResult struct {
+	BitRate int    `json:"bitRate"`
+	Ctype   int    `json:"ctype"`
+	Errcode int    `json:"errcode"`
+	Error   string `json:"error"`
+	ExtName string `json:"extName"`
+	Extra   struct {
+		One28filesize   int    `json:"128filesize"`
+		One28hash       string `json:"128hash"`
+		Three20filesize int    `json:"320filesize"`
+		Three20hash     string `json:"320hash"`
+		Sqfilesize      int    `json:"sqfilesize"`
+		Sqhash          string `json:"sqhash"`
+	} `json:"extra"`
+	FileHead    int    `json:"fileHead"`
+	FileName    string `json:"fileName"`
+	FileSize    int    `json:"fileSize"`
+	Hash        string `json:"hash"`
+	Privilege   int    `json:"privilege"`
+	Q           int    `json:"q"`
+	ReqHash     string `json:"req_hash"`
+	SingerHead  string `json:"singerHead"`
+	Status      int    `json:"status"`
+	Stype       int    `json:"stype"`
+	TimeLength  int    `json:"timeLength"`
+	TopicRemark string `json:"topic_remark"`
+	TopicURL    string `json:"topic_url"`
+	URL         string `json:"url"`
+}
